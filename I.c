@@ -1,33 +1,31 @@
 #include <stdio.h>
 
 int main(){
-    int a[1010], n, i, min, cnt;
-    scanf("%d", &n);
-    for(i=0; i<n; i++)
+    int a[110], t, n, i, j, k, sum, min;
+    scanf("%d", &t);
+    for(k=1; k<=t; k++)
     {
-        scanf("%d", &a[i]);
-    }
-    for(i=0, min=a[0]; i<n; i++)
-    {
-        if(min>a[i])
+        scanf("%d", &n);
+        for(i=0; i<n; i++)
         {
-            min = a[i];
+            scanf("%d", &a[i]);
         }
-    }
-    for(i=0, cnt=0; i<n; i++)
-    {
-        if(a[i]==min)
+        for(i=1; i<n; i++)
         {
-            cnt++;
+            for(j=i+1; j<=n; j++)
+            {
+                sum = a[i-1] + a[j-1] + j - i;
+                if(j==2)
+                {
+                    min = sum;
+                }
+                if(min>sum)
+                {
+                    min = sum;
+                }
+            }
         }
-    }
-    if(cnt%2==0)
-    {
-        printf("Unlucky\n");
-    }
-    else
-    {
-        printf("Lucky\n");
+        printf("%d\n", min);
     }
 
     return 0;
